@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     # Install fzf on level 3
     apk add git
     git clone --depth 1 https://github.com/junegunn/fzf.git /home/level3/.fzf
-    sed -i "s#~/#/home/level3/#g" /home/level3/.fzf/install # Patch the install location wich currently just installs to home
+    sed -i "s#~/#/home/level3/#g" /home/level3/.fzf/install # Patch the install location which currently just installs to home
     /home/level3/.fzf/install --all
 
     # Fix permissions
