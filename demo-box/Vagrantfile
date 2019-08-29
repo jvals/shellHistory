@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/alpine310"
+  config.vm.provision "file", source: "./.bash_history", destination: ".bash_history"
+  config.vm.provision "file", source: "./.bash_profile", destination: ".bash_profile"
+  config.vm.provision "shell", inline: <<-SHELL
+    addgroup -S level1group && adduser -S level1 -G level1group -s /bin/bash
+    addgroup -S level2group && adduser -S level2 -G level2group -s /bin/bash
+    addgroup -S level3group && adduser -S level3 -G level3group -s /bin/bash
+
+    cp .bash_history /home/level1/.bash_history
+    cp .bash_history /home/level2/.bash_history
+    cp .bash_history /home/level3/.bash_history
+
+    echo "export PS1='\\u \\w>'" >> /home/level1/.bash_profile
+    echo "export PS1='\\u \\w>'" >> /home/level2/.bash_profile
+    echo "export PS1='\\u \\w>'" >> /home/level3/.bash_profile
+
+    # Install fzf on level 3
+    apk add git
+    git clone --depth 1 https://github.com/junegunn/fzf.git /home/level3/.fzf
+    sed -i "s#~/#/home/level3/#g" /home/level3/.fzf/install # Patch the install location wich currently just installs to home
+    /home/level3/.fzf/install --all
+
+    # Fix permissions
+    chown -R level1:level1group /home/level1/
+    chown -R level2:level2group /home/level2/
+    chown -R level3:level3group /home/level3/
+  SHELL
+  
+end
