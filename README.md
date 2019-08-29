@@ -18,7 +18,7 @@ To ssh into the box, run
 `vagrant ssh`
 
 I have added the aliases `l1`, `l2` and `l3` to quickly switch from the vagrant user to level1, level2 and level3.
-Then you want to switch back to the vagrant user, press `CTRL+D` or type `exit` to log out.
+When you want to switch back to the vagrant user, press `CTRL+D` or type `exit` to log out.
 
 The fzf installation can be copied and used on your own machine. Note that the patch in the Vagrantfile is not generally necessary; only if you are installing fzf for a different user. The install instructions without the patch is copied below:
 
