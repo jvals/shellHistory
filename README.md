@@ -4,9 +4,10 @@ This project contains a small presentation for a lightning talk about shell comm
 The original presentation file is a keynote file and can be opened with Keynote. I have also added a PDF version for portability. Note that the presentation is written in Norwegian.
 
 The demo-box contains a Vagrantfile which can be used to spin up an alpine image in a virtual machine. The Vagrantfile contains some simple provisioning:
-    1. Three users are added, level1, level2 and level3
-    2. A premade bash history file is copied into the home folder of each user
-    3. FZF is installed on user level3
+
+1. Three users are added, level1, level2 and level3
+2. A premade bash history file is copied into the home folder of each user
+3. FZF is installed on user level3
 
 To start the image, install Vagrant and run
 
